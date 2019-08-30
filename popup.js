@@ -1,14 +1,3 @@
-chrome.storage.sync.get("data", function(items) {
-    if (!chrome.runtime.error) {
-      //console.log(items);
-      var enableMUA = items.data;
-      if(enableMUA == "disable") {
-        document.getElementById('muaonoffswitch').checked = false;
-      } else {
-        document.getElementById('muaonoffswitch').checked = true;
-      }
-    } 
-});
 
 function enableNow() {
   chrome.browserAction.setIcon({path:"icon19.png"});
@@ -185,4 +174,16 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('muaonoffswitch').addEventListener('click', switchNow);
  // document.getElementById('fillText').addEventListener('click', init22);
   init();
+  // init the onoff switch status after the page is loaded
+  chrome.storage.sync.get("data", function(items) {
+    if (!chrome.runtime.error) {
+      //console.log(items);
+      var enableMUA = items.data;
+      if(enableMUA == "disable") {
+        document.getElementById('muaonoffswitch').checked = false;
+      } else {
+        document.getElementById('muaonoffswitch').checked = true;
+      }
+    }
+  });
 });
